@@ -43,7 +43,7 @@ flowchart LR
     end
 
     subgraph ML["🤖 학습 · 평가"]
-        G["ml_manager<br/>LR·NB·KNN·DT·SVM·CatBoost·GBDT·LGBM<br/>+ Borderline-SMOTE · 투표 앙상블"]
+        G["ml_manager<br/>LR·NB·KNN·DT·SVM·CatBoost·GBDT·LGBM<br/>+ SMOTE 오버샘플링 · 투표 앙상블"]
         H["threshold_utils<br/>Youden-J 임계값 최적화"]
         I["eval_tool<br/>Acc/Sen/Spe/PPV/NPV/F1·이항 CI"]
     end
@@ -77,7 +77,7 @@ flowchart LR
 ## 5. 방법론 하이라이트
 
 - **8종 분류기 + 투표 앙상블** — LR·NB·KNN·DT·SVM·**CatBoost**·GBDT·LightGBM을 그리드서치로 학습, hard/soft voting 앙상블
-- **클래스 불균형 처리** — Borderline-SMOTE 오버샘플링 + `class_weight`/CatBoost 동적 가중치 (유병률 ~15%)
+- **클래스 불균형 처리** — SMOTE 오버샘플링 + `class_weight`/CatBoost 동적 가중치 (유병률 ~15%)
 - **모델 선택** — 검증셋에서 `0.6·AUC + 0.3·F1 + 0.1·MCC` 복합 점수 + **Youden-J** 임계값 튜닝
 - **엄밀한 불확실성 보고** — 민감도·특이도에 **이항 95% CI**(per-fold + pooled), AUC에 **부트스트랩 95% CI**, 임상 하한선 대비 PASS/FAIL 판정
 - **다기관 외부 검증** — 학습에 없던 사이트로 일반화 성능 확인 (`external_eval.py`)

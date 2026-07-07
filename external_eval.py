@@ -151,8 +151,8 @@ def evaluate_external(EXTERNAL_PATH: str):
         scaler = md.get("scaler", None)
         pca = md.get("pca", None)
 
-        # ✅ threshold를 항상 0.5로 고정
-        thr = 0.5  
+        # threshold를 항상 0.5로 고정
+        thr = 0.5
 
         X_eval = X_eval_raw.copy()
         if scaler is not None:
